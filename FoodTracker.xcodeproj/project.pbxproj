@@ -14,6 +14,20 @@
 		011334842338D0B80068321F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011334832338D0B80068321F /* Assets.xcassets */; };
 		011334872338D0B80068321F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011334852338D0B80068321F /* LaunchScreen.storyboard */; };
 		011334922338D0B80068321F /* FoodTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011334912338D0B80068321F /* FoodTrackerTests.swift */; };
+		0124321E234B31C800D88EA8 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124321D234B31C800D88EA8 /* Reader.swift */; };
+		01243220234B3AE500D88EA8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124321F234B3AE500D88EA8 /* DataService.swift */; };
+		0164C86A234D9C630003F566 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C869234D9C630003F566 /* Parameter.swift */; };
+		0164C86C234D9C780003F566 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C86B234D9C780003F566 /* Body.swift */; };
+		0164C86E234D9D230003F566 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C86D234D9D230003F566 /* HttpMethod.swift */; };
+		0164C870234F084B0003F566 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C86F234F084B0003F566 /* Customer.swift */; };
+		0164C872234F08580003F566 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C871234F08580003F566 /* Response.swift */; };
+		0164C874234F08B90003F566 /* DataParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C873234F08B90003F566 /* DataParseable.swift */; };
+		0164C876234F08D60003F566 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C875234F08D60003F566 /* ParserError.swift */; };
+		0164C878234F10E80003F566 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C877234F10E80003F566 /* RequestError.swift */; };
+		0164C87B234F16170003F566 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C87A234F16170003F566 /* Date+ISO8601.swift */; };
+		0164C882234F27850003F566 /* HttpMethod+StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C881234F27850003F566 /* HttpMethod+StringValue.swift */; };
+		0164C884234F3C3B0003F566 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C883234F3C3B0003F566 /* Token.swift */; };
+		0164C887234F3EEC0003F566 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C886234F3EEC0003F566 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +52,20 @@
 		0113348D2338D0B80068321F /* FoodTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		011334912338D0B80068321F /* FoodTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerTests.swift; sourceTree = "<group>"; };
 		011334932338D0B80068321F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0124321D234B31C800D88EA8 /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		0124321F234B3AE500D88EA8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		0164C869234D9C630003F566 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		0164C86B234D9C780003F566 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
+		0164C86D234D9D230003F566 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		0164C86F234F084B0003F566 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		0164C871234F08580003F566 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		0164C873234F08B90003F566 /* DataParseable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParseable.swift; sourceTree = "<group>"; };
+		0164C875234F08D60003F566 /* ParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
+		0164C877234F10E80003F566 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		0164C87A234F16170003F566 /* Date+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
+		0164C881234F27850003F566 /* HttpMethod+StringValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpMethod+StringValue.swift"; sourceTree = "<group>"; };
+		0164C883234F3C3B0003F566 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		0164C886234F3EEC0003F566 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +107,10 @@
 		011334792338D0B70068321F /* FoodTracker */ = {
 			isa = PBXGroup;
 			children = (
+				0164C885234F3E220003F566 /* Exception */,
+				0164C87C234F19800003F566 /* Protocol */,
+				0164C879234F15520003F566 /* Extension */,
+				0164C868234D9C460003F566 /* Model */,
 				0113347A2338D0B70068321F /* AppDelegate.swift */,
 				0113347C2338D0B70068321F /* SceneDelegate.swift */,
 				0113347E2338D0B70068321F /* ViewController.swift */,
@@ -86,6 +118,8 @@
 				011334832338D0B80068321F /* Assets.xcassets */,
 				011334852338D0B80068321F /* LaunchScreen.storyboard */,
 				011334882338D0B80068321F /* Info.plist */,
+				0124321D234B31C800D88EA8 /* Reader.swift */,
+				0124321F234B3AE500D88EA8 /* DataService.swift */,
 			);
 			path = FoodTracker;
 			sourceTree = "<group>";
@@ -97,6 +131,46 @@
 				011334932338D0B80068321F /* Info.plist */,
 			);
 			path = FoodTrackerTests;
+			sourceTree = "<group>";
+		};
+		0164C868234D9C460003F566 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0164C869234D9C630003F566 /* Parameter.swift */,
+				0164C86B234D9C780003F566 /* Body.swift */,
+				0164C86D234D9D230003F566 /* HttpMethod.swift */,
+				0164C86F234F084B0003F566 /* Customer.swift */,
+				0164C871234F08580003F566 /* Response.swift */,
+				0164C883234F3C3B0003F566 /* Token.swift */,
+				0164C886234F3EEC0003F566 /* ErrorResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0164C879234F15520003F566 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0164C87A234F16170003F566 /* Date+ISO8601.swift */,
+				0164C881234F27850003F566 /* HttpMethod+StringValue.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0164C87C234F19800003F566 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0164C873234F08B90003F566 /* DataParseable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0164C885234F3E220003F566 /* Exception */ = {
+			isa = PBXGroup;
+			children = (
+				0164C877234F10E80003F566 /* RequestError.swift */,
+				0164C875234F08D60003F566 /* ParserError.swift */,
+			);
+			path = Exception;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +275,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0113347F2338D0B70068321F /* ViewController.swift in Sources */,
+				0164C870234F084B0003F566 /* Customer.swift in Sources */,
+				0164C882234F27850003F566 /* HttpMethod+StringValue.swift in Sources */,
+				0164C876234F08D60003F566 /* ParserError.swift in Sources */,
 				0113347B2338D0B70068321F /* AppDelegate.swift in Sources */,
+				0164C874234F08B90003F566 /* DataParseable.swift in Sources */,
+				0124321E234B31C800D88EA8 /* Reader.swift in Sources */,
+				0164C887234F3EEC0003F566 /* ErrorResponse.swift in Sources */,
+				0164C884234F3C3B0003F566 /* Token.swift in Sources */,
+				0164C86C234D9C780003F566 /* Body.swift in Sources */,
+				0164C86E234D9D230003F566 /* HttpMethod.swift in Sources */,
+				0164C87B234F16170003F566 /* Date+ISO8601.swift in Sources */,
+				01243220234B3AE500D88EA8 /* DataService.swift in Sources */,
+				0164C878234F10E80003F566 /* RequestError.swift in Sources */,
+				0164C872234F08580003F566 /* Response.swift in Sources */,
 				0113347D2338D0B70068321F /* SceneDelegate.swift in Sources */,
+				0164C86A234D9C630003F566 /* Parameter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,12 +451,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498C49XV39;
 				INFOPLIST_FILE = FoodTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.FoodTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HungDao.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -380,12 +469,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 498C49XV39;
 				INFOPLIST_FILE = FoodTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.FoodTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HungDao.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
