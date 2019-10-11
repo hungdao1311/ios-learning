@@ -63,16 +63,22 @@ class DataService {
         task.resume()
     }
     
-    func getObject<T>(completion: @escaping (_ result: T?, _ error: Error?) -> Void) where T: DataParseable, T: CustomStringConvertible{
+    func getObject<T>(completion: @escaping (_ result: T?, _ apiError: ErrorResponse?, _ error: Error?) -> Void) where T: DataParseable, T: CustomStringConvertible{
         var result: T?
         var callbackError: Error?
-        let task = URLSession.shared.dataTask(with: url) {
+        var errorResponse: ErrorResponse?
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
+            let status = (response as! HTTPURLResponse).statusCode
             if let data = data {
                 do {
                     let dict = try self.convertToDictionary(text: String(decoding: data, as:UTF8.self))
                     let reader = Reader(dict)
-                    result = try T(json: reader)
+                    if (status == 200) {
+                        result = try T(json: reader)
+                    } else {
+                        errorResponse = ErrorResponse(json: reader)
+                    }
                 } catch (let e) {
                     callbackError = e
                 }
@@ -80,7 +86,7 @@ class DataService {
                 callbackError = error
             }
             DispatchQueue.main.async {
-                completion(result, callbackError)
+                completion(result, errorResponse, callbackError)
             }
         }
         task.resume()

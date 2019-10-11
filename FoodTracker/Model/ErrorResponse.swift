@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorResponse {
+struct ErrorResponse: DataParseable, CustomStringConvertible {
     var error: String
     var errorDescription: String
     
@@ -22,5 +22,9 @@ struct ErrorResponse {
             error: json.readString("error"),
             errorDescription: json.readString("error_description")
         )
+    }
+    
+    var description: String {
+        return "error: \(errorDescription)"
     }
 }

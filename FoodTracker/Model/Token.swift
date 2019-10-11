@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Token {
+struct Token: DataParseable, CustomStringConvertible {
     var accessToken: String
     var expiresIn: Int
     var refreshExpiresIn: Int
     var refreshToken: String
     var tokenType: String
-    var notBeforePolicy: String
+    var notBeforePolicy: Date
     var sessionState: String
     
     init(json: Reader) {
@@ -23,7 +23,11 @@ struct Token {
         self.refreshExpiresIn = json.readInt("refresh_expires_in")
         self.refreshToken = json.readString("refresh_token")
         self.tokenType = json.readString("token_type")
-        self.notBeforePolicy = json.readString("not-before-policy")
+        self.notBeforePolicy = json.readDate("not-before-policy")
         self.sessionState = json.readString("session_state")
+    }
+    
+    var description: String {
+        return "access token: \(accessToken), expires in: \(expiresIn), refresh expires in: \(refreshExpiresIn), refresh token: \(refreshToken), token type: \(tokenType), not before policy: \(notBeforePolicy.iso8601), session state: \(sessionState)"
     }
 }

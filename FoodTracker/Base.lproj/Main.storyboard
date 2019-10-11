@@ -55,13 +55,45 @@
                         <viewLayoutGuide key="safeArea" id="1Uc-Ew-bHw"/>
                     </view>
                     <connections>
-                        <outlet property="textLabel" destination="SRQ-OY-ZeQ" id="D1c-uV-rtR"/>
+                        <outlet property="loginLabel" destination="SRQ-OY-ZeQ" id="D1c-uV-rtR"/>
+                        <outlet property="passwordTextField" destination="Ir6-c2-C6Q" id="9Dd-gK-auN"/>
                         <outlet property="userNameTextField" destination="pLX-FC-Yau" id="Daz-i0-oBU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-59.420289855072468" y="113.31521739130436"/>
+        </scene>
+        <!--Response View Controller-->
+        <scene sceneID="hEi-Op-4nk">
+            <objects>
+                <viewController storyboardIdentifier="responseViewController" id="i1E-Wt-g0f" customClass="ResponseViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Du-oa-UnA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Logged in" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zbD-ZE-WSx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ysf-lj-cJx" firstAttribute="bottom" secondItem="zbD-ZE-WSx" secondAttribute="bottom" id="8zc-ia-jzI"/>
+                            <constraint firstItem="zbD-ZE-WSx" firstAttribute="top" secondItem="ysf-lj-cJx" secondAttribute="top" id="Pyg-UH-Tqr"/>
+                            <constraint firstItem="ysf-lj-cJx" firstAttribute="trailing" secondItem="zbD-ZE-WSx" secondAttribute="trailing" id="cTV-nZ-yMN"/>
+                            <constraint firstItem="zbD-ZE-WSx" firstAttribute="leading" secondItem="ysf-lj-cJx" secondAttribute="leading" id="jrb-1X-JtI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ysf-lj-cJx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DZ4-Ct-9b1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ang-BM-4xU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="116"/>
         </scene>
     </scenes>
 </document>

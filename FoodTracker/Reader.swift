@@ -65,5 +65,19 @@ class Reader {
         }
         return 0
     }
+    
+    func readDate(_ name: String) -> Date {
+        let value = values[name]
+        if let doubleValue = value as? Double {
+            return Date(timeIntervalSince1970: doubleValue)
+        }
+        if let intValue = value as? Int {
+            return Date(timeIntervalSince1970: Double(intValue))
+        }
+        if let stringValue = value as? String {
+            return Date(timeIntervalSince1970: Double(stringValue) ?? 0.0)
+        }
+        fatalError("Invalid date value")
+    }
 }
 

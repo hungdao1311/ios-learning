@@ -28,6 +28,7 @@
 		0164C882234F27850003F566 /* HttpMethod+StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C881234F27850003F566 /* HttpMethod+StringValue.swift */; };
 		0164C884234F3C3B0003F566 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C883234F3C3B0003F566 /* Token.swift */; };
 		0164C887234F3EEC0003F566 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0164C886234F3EEC0003F566 /* ErrorResponse.swift */; };
+		01AE3D3D235065F100163603 /* ResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE3D3C235065F100163603 /* ResponseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		0164C881234F27850003F566 /* HttpMethod+StringValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpMethod+StringValue.swift"; sourceTree = "<group>"; };
 		0164C883234F3C3B0003F566 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0164C886234F3EEC0003F566 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		01AE3D3C235065F100163603 /* ResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				011334882338D0B80068321F /* Info.plist */,
 				0124321D234B31C800D88EA8 /* Reader.swift */,
 				0124321F234B3AE500D88EA8 /* DataService.swift */,
+				01AE3D3C235065F100163603 /* ResponseViewController.swift */,
 			);
 			path = FoodTracker;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				0113347B2338D0B70068321F /* AppDelegate.swift in Sources */,
 				0164C874234F08B90003F566 /* DataParseable.swift in Sources */,
 				0124321E234B31C800D88EA8 /* Reader.swift in Sources */,
+				01AE3D3D235065F100163603 /* ResponseViewController.swift in Sources */,
 				0164C887234F3EEC0003F566 /* ErrorResponse.swift in Sources */,
 				0164C884234F3C3B0003F566 /* Token.swift in Sources */,
 				0164C86C234D9C780003F566 /* Body.swift in Sources */,

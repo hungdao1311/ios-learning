@@ -12,15 +12,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userNameTextField: UITextField!
     
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var resultTextView: UITextView!
+    @IBOutlet weak var loginLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // Handle the text field’s user input through delegate callbacks.
         userNameTextField.delegate = self
+        passwordTextField.delegate = self
         // safe
         // unsafe
     }
@@ -32,44 +33,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textLabel.text = textField.text
-    }
-    
     //MARK: Actions
     @IBAction func getResponseFromLabel(_ sender: UIButton) {
-        guard let url = URL(string: textLabel.text!) else {
-            self.resultTextView.text = "Invalid URL"
-            return
-        }
+        let url = URL(string: "https://auth.dev.4tellus.net/auth/realms/evv-dev/protocol/openid-connect/token")!
          DataService(url: url)
             .setMethod(method: .post)
             .setBody(body: UrlEncodedBody([
-                "username":"2323",
-                "password":"ewee",
-                "client":"244"
+                "client_id": "mobile-dev",
+                "username": self.userNameTextField.text!,
+                "password": self.passwordTextField.text!,
+                "grant_type":"password"
             ]))
-            .getRawResult { (result, error) in
-                if let error = error {
-                    self.resultTextView.text = error.localizedDescription
-                } else {
-                    self.resultTextView.text = result!.description
+            .getObject() { [weak self] (result: Token?, apiError: ErrorResponse?, error) in
+            if let error = error {
+                var alertMessage: String
+                switch error {
+                case ParserError.DictionaryCasting:
+                    alertMessage = "Error when casting object to dictionary"
+                case ParserError.EmptyResponse:
+                    alertMessage = "The specified URL returns an empty response"
+                case ParserError.JsonParsing:
+                    alertMessage = "Error parsing JSON"
+                default:
+                    alertMessage = error.localizedDescription
                 }
-//            .getObject() { (result: Response?, error) in
-//            if let error = error {
-//                switch error {
-//                case ParserError.DictionaryCasting:
-//                    self.resultTextView.text = "Error when casting object to dictionary"
-//                case ParserError.EmptyResponse:
-//                    self.resultTextView.text = "The specified URL returns an empty response"
-//                case ParserError.JsonParsing:
-//                    self.resultTextView.text = "Error parsing JSON"
-//                default:
-//                    self.resultTextView.text = error.localizedDescription
-//                }
-//            } else {
-//                self.resultTextView.text = result!.description
-//            }
+                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            } else if let apiError = apiError {
+                let alert = UIAlertController(title: "Error response", message: apiError.description, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            } else {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let responseViewController = storyBoard.instantiateViewController(withIdentifier: "responseViewController") as! ResponseViewController
+                self?.present(responseViewController, animated: true, completion: nil)
+            }
         }
     }
 }
