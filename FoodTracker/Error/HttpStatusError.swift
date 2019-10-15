@@ -1,5 +1,5 @@
 //
-//  DataParseable.swift
+//  ErrorResponse.swift
 //  FoodTracker
 //
 //  Created by Hung Dao on 10/10/19.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol DataParseable {
-    init(json reader: Reader) throws
+struct HttpStatusError : Error {
+    let statusCode : Int
+    let content: String
 }

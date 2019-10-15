@@ -14,6 +14,10 @@ class Reader {
     init(_ dict:[String: Any]) {
         self.values = dict
     }
+    
+    convenience init(json: String) throws {
+        try self.init(convertToDictionary(text: json))
+    }
 
     func readObject<T>(_ name: String) throws -> T? where T : DataParseable {
         guard let data = values[name] as? Dictionary<String, Any> else {
@@ -21,6 +25,28 @@ class Reader {
         }
         let reader = Reader(data)
         return try T(json: reader)
+    }
+    
+    func readNestedObject(_ name: String) -> Reader {
+        guard let data = values[name] as? Dictionary<String, Any> else {
+            fatalError("Invalid json object")
+        }
+        return Reader(data)
+    }
+    
+    func readList<T>(_ name: String) throws -> [T] where T: DataParseable {
+        var result = [T]()
+        guard let data = values[name] as? Array<Any> else {
+            fatalError("Invalid array")
+        }
+        for element in data {
+            guard let jsonElement = element as? Dictionary<String, Any> else {
+                continue
+            }
+            let reader = Reader(jsonElement)
+            result.append(try T(json: reader))
+        }
+        return result
     }
     
     func readString(_ name: String) -> String {
@@ -64,6 +90,20 @@ class Reader {
             return Double(stringValue) ?? 0
         }
         return 0
+    }
+    
+    func readBool(_ name: String) -> Bool {
+        let value = values[name]
+        if let boolValue = value as? Bool {
+            return boolValue
+        }
+        if let stringValue = value as? String {
+            guard let boolValue = Bool(stringValue) else {
+                fatalError("Invalid bool value")
+            }
+            return boolValue
+        }
+        fatalError("Invalid bool value")
     }
     
     func readDate(_ name: String) -> Date {

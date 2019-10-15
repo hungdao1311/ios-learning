@@ -12,11 +12,13 @@ class DataService {
     var url: URL
     var body: Body?
     var method: HttpMethod?
+    var accessToken: String?
     private var request: URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method?.stringValue
         urlRequest.httpBody = body?.content.data(using: .utf8)
         urlRequest.setValue(body?.contentType, forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(accessToken ?? "")", forHTTPHeaderField: "Authorization")
         return urlRequest
     }
     init(url: URL) {
@@ -46,6 +48,11 @@ class DataService {
         return self
     }
     
+    func setAccessToken(token: String) -> DataService {
+        self.accessToken = token
+        return self
+    }
+    
     func getRawResult(completion: @escaping (_ result: String?, _ error: Error?) -> Void) {
         var result: String?
         var callbackError: Error?
@@ -63,21 +70,19 @@ class DataService {
         task.resume()
     }
     
-    func getObject<T>(completion: @escaping (_ result: T?, _ apiError: ErrorResponse?, _ error: Error?) -> Void) where T: DataParseable, T: CustomStringConvertible{
+    func getObject<T>(completion: @escaping (_ result: T?, _ error: Error?) -> Void) where T: DataParseable, T: CustomStringConvertible{
         var result: T?
         var callbackError: Error?
-        var errorResponse: ErrorResponse?
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             let status = (response as! HTTPURLResponse).statusCode
             if let data = data {
                 do {
-                    let dict = try self.convertToDictionary(text: String(decoding: data, as:UTF8.self))
-                    let reader = Reader(dict)
+                    let content = String(decoding: data, as:UTF8.self)
                     if (status == 200) {
-                        result = try T(json: reader)
+                        result = try parseObject(content: content)
                     } else {
-                        errorResponse = ErrorResponse(json: reader)
+                        callbackError = HttpStatusError(statusCode: status, content: content)
                     }
                 } catch (let e) {
                     callbackError = e
@@ -86,27 +91,11 @@ class DataService {
                 callbackError = error
             }
             DispatchQueue.main.async {
-                completion(result, errorResponse, callbackError)
+                completion(result, callbackError)
             }
         }
         task.resume()
     }
     
-    func convertToDictionary(text: String) throws -> [String: Any] {
-        if let data = text.data(using: .utf8) {
-            let jsonObject: Any
-            do {
-                jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-            } catch {
-                throw ParserError.JsonParsing
-            }
-            if let dict = jsonObject as? [String: Any] {
-                return dict
-            } else {
-                throw ParserError.DictionaryCasting
-            }
-        } else {
-            throw ParserError.EmptyResponse
-        }
-    }
+   
 }

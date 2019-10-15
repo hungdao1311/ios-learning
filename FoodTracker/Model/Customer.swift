@@ -9,25 +9,28 @@
 import Foundation
 
 struct Customer : DataParseable, CustomStringConvertible {
-    var name: String
-    var age: Int
-    var point: Double
+    var id: String
+    var firstName: String
+    var lastName: String
+    var editable: Bool
     
-    init(name: String, age: Int, point: Double) {
-        self.name = name
-        self.age = age
-        self.point = point
+    init(id: String, firstName: String, lastName: String, editable: Bool) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.editable = editable
     }
     
     init(json reader: Reader) {
         self.init(
-            name: reader.readString("name"),
-            age: reader.readInt("age"),
-            point: reader.readDouble("point")
+            id: reader.readString("id"),
+            firstName: reader.readString("firstName"),
+            lastName: reader.readString("lastName"),
+            editable: reader.readBool("editable")
         )
     }
     
     var description: String {
-        return "Customer(name: \(name), age \(age), point \(point))"
+        return ""
     }
 }

@@ -8,20 +8,15 @@
 
 import Foundation
 
-struct Response : DataParseable, CustomStringConvertible {
-    let customer: Customer?
+struct Response : DataParseable{
+    let customerList: [Customer]
     let url: String
+    let pagingInfo: PagingInfo?
     
-    var description: String {
-        return "URL: \(url)\n\(customer?.description ?? "")"
-    }
-    init(customer: Customer, url: String) {
-        self.customer = customer
-        self.url = url
-    }
     
-    init(json reader: Reader) throws{
-        customer = try reader.readObject("args")
-        url = reader.readString("url")
+    init(json reader: Reader) throws {
+        url = reader.readNestedObject("_links").readNestedObject("self").readString("href")
+        pagingInfo = try reader.readObject("page")
+        customerList = try reader.readNestedObject("_embedded").readList("recipients")
     }
 }
