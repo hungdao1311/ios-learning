@@ -19,17 +19,17 @@ class Reader {
         try self.init(convertToDictionary(text: json))
     }
 
-    func readObject<T>(_ name: String) throws -> T? where T : DataParseable {
+    func readObject<T>(_ name: String) throws -> T where T : DataParseable {
         guard let data = values[name] as? Dictionary<String, Any> else {
-            return nil
+            throw RequiredFieldError(name: name)
         }
         let reader = Reader(data)
         return try T(json: reader)
     }
     
-    func readNestedObject(_ name: String) -> Reader {
+    func readNestedObject(_ name: String) throws -> Reader {
         guard let data = values[name] as? Dictionary<String, Any> else {
-            fatalError("Invalid json object")
+            throw RequiredFieldError(name: name)
         }
         return Reader(data)
     }
@@ -37,7 +37,7 @@ class Reader {
     func readList<T>(_ name: String) throws -> [T] where T: DataParseable {
         var result = [T]()
         guard let data = values[name] as? Array<Any> else {
-            fatalError("Invalid array")
+            throw RequiredFieldError(name: name)
         }
         for element in data {
             guard let jsonElement = element as? Dictionary<String, Any> else {
@@ -99,11 +99,11 @@ class Reader {
         }
         if let stringValue = value as? String {
             guard let boolValue = Bool(stringValue) else {
-                fatalError("Invalid bool value")
+                return false
             }
             return boolValue
         }
-        fatalError("Invalid bool value")
+        return false
     }
     
     func readDate(_ name: String) -> Date {
@@ -117,7 +117,7 @@ class Reader {
         if let stringValue = value as? String {
             return Date(timeIntervalSince1970: Double(stringValue) ?? 0.0)
         }
-        fatalError("Invalid date value")
+        return Date()
     }
 }
 

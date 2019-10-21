@@ -70,7 +70,7 @@ class DataService {
         task.resume()
     }
     
-    func getObject<T>(completion: @escaping (_ result: T?, _ error: Error?) -> Void) where T: DataParseable, T: CustomStringConvertible{
+    func getObject<T>(completion: @escaping (_ result: T?, _ error: Error?) -> Void) where T: DataParseable{
         var result: T?
         var callbackError: Error?
         let task = URLSession.shared.dataTask(with: request as URLRequest) {

@@ -14,6 +14,10 @@ struct Customer : DataParseable, CustomStringConvertible {
     var lastName: String
     var editable: Bool
     
+    var fullName: String {
+        return ("\(firstName) \(lastName)")
+    }
+    
     init(id: String, firstName: String, lastName: String, editable: Bool) {
         self.id = id
         self.firstName = firstName
