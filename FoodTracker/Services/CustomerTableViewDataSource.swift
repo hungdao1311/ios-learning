@@ -19,12 +19,15 @@ class CustomerTableViewDataSource: NSObject, UITableViewDataSource {
         self.pagingInfo = pagingInfo
     }
     
+    init(_ customerList: [Customer]) {
+        self.customerList = customerList
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
          return 1
      }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let pagingInfo = pagingInfo else {
-            return 0
+            return customerList.count
         }
         return pagingInfo.totalElements
     }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SQLite
 struct Customer : DataParseable, CustomStringConvertible {
     var id: String
     var firstName: String

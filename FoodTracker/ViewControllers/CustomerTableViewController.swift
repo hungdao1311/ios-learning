@@ -16,7 +16,7 @@ class CustomerTableViewController: UIViewController {
     var pagingInfo: PagingInfo?
     
     @IBOutlet weak var tableView: UITableView!
-
+    
     var dataSource: UITableViewDataSource!
     
     
@@ -24,7 +24,7 @@ class CustomerTableViewController: UIViewController {
         super.viewDidLoad()
         
         requestCustomer()
-    
+        
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.placeholder = "Search Customer"
@@ -44,9 +44,7 @@ class CustomerTableViewController: UIViewController {
     
     func searchCustomer(_ searchText: String) {
         requestCustomer(pattern: searchText)
-        dataSource = CustomerTableViewDataSource(customerList, pagingInfo)
-        tableView.dataSource = dataSource
-        tableView.reloadData()
+        //
     }
     
     func requestCustomer(pattern: String = "") {
@@ -58,12 +56,28 @@ class CustomerTableViewController: UIViewController {
             .getObject() { [weak self](result: CustomerResponse?, error) in
                 guard let self = self else {
                     return
-                }
+                }  
                 if let error = error {
                     let status = ErrorResponse(exception: error)
-                    let alert = UIAlertController(title: "Error", message: status.errorDescription, preferredStyle: UIAlertController.Style.alert)
+                    let alertMessage: String
+                    if (status.isUnauthorized) {
+                        alertMessage = "Invalid token"
+                    } else {
+                        alertMessage = status.errorDescription
+                    }
+                    let alert = UIAlertController(title: "Error", message: "\(alertMessage) \n Showing cached result", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
+                    do {
+                        self.customerList = try DataContext.shared.customerCaching.load(queryString: pattern)
+                        self.dataSource = CustomerTableViewDataSource(self.customerList)
+                        self.tableView.dataSource = self.dataSource
+                        self.tableView.reloadData()
+                    } catch {
+                        let cachingAlert = UIAlertController(title: "Cache error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        cachingAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(cachingAlert, animated: true, completion: nil)
+                    }
                 }
                 if let response = result {
                     self.customerList = response.data
@@ -71,11 +85,10 @@ class CustomerTableViewController: UIViewController {
                     self.dataSource = CustomerTableViewDataSource(self.customerList, self.pagingInfo)
                     self.tableView.dataSource = self.dataSource
                     self.tableView.reloadData()
+                    try! DataContext.shared.customerCaching.save(data: response.data)
                 }
         }
     }
-
-    
 }
 
 extension CustomerTableViewController: UISearchBarDelegate {

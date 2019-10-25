@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SQLite
 
 class Settings {
     var accessToken: String? {
@@ -32,12 +33,6 @@ class Settings {
         return data[key] as! String?
     }
     
-    private static var instance : Settings?
+    static var shared = Settings()
     
-    static var shared : Settings {
-        if (instance == nil) {
-            instance = Settings()
-        }
-        return instance!
-    }
 }

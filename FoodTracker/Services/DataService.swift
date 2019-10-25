@@ -75,9 +75,17 @@ class DataService {
         var callbackError: Error?
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
-            let status = (response as! HTTPURLResponse).statusCode
-            if let data = data {
+            if let error = error {
+                callbackError = error
+            } else {
+                guard let data = data else {
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else {
+                    return
+                }
                 do {
+                    let status = response.statusCode
                     let content = String(decoding: data, as:UTF8.self)
                     if (status == 200) {
                         result = try parseObject(content: content)
@@ -87,8 +95,6 @@ class DataService {
                 } catch (let e) {
                     callbackError = e
                 }
-            } else {
-                callbackError = error
             }
             DispatchQueue.main.async {
                 completion(result, callbackError)

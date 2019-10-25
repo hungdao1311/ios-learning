@@ -101,13 +101,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDK-7v-Ev8">
-                                                    <rect key="frame" x="30" y="11.333333333333336" width="122" height="21"/>
+                                                    <rect key="frame" x="30" y="11.333333333333336" width="354" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="FDK-7v-Ev8" secondAttribute="trailing" constant="10" id="2y9-1v-yCB"/>
                                                 <constraint firstItem="FDK-7v-Ev8" firstAttribute="centerY" secondItem="Dwv-pm-vyr" secondAttribute="centerY" id="WYc-ih-PQd"/>
                                                 <constraint firstItem="FDK-7v-Ev8" firstAttribute="leading" secondItem="Dwv-pm-vyr" secondAttribute="leadingMargin" constant="10" id="c0q-Me-nRc"/>
                                             </constraints>
